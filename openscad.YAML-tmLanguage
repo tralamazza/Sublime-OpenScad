@@ -1,0 +1,101 @@
+# [PackageDev] target_format: plist, ext: tmLanguage
+---
+name: OpenScad
+scopeName: source.scad
+fileTypes: [scad]
+uuid: 6f8105a1-5126-4af9-8bc3-4797807d0adf
+
+patterns:
+- include: '#comments'
+- include: '#keywords'
+- include: '#literals'
+- include: '#support'
+
+repository:
+  comments:
+    patterns:
+    - name: comment.line.double-slash.scad
+      begin: //
+      end: $
+      captures:
+        '0': { name: punctuation.definition.comment.scad }
+    - name: comment.block.scad
+      begin: /\*
+      end: \*/
+      captures:
+        '0': { name: punctuation.definition.comment.scad }
+
+  keywords:
+    patterns:
+    - name: keyword.control.conditional.scad
+      match: \b(else|if)\b
+    - name: keyword.control.flow.scad
+      match: \b(return)\b
+    - name: keyword.control.loop.scad
+      match: \b(for)\b
+    - name: keyword.other.scad
+      match: \b(assign)\b
+    - name: keyword.operator.arithmetical.scad
+      match: '\+|-|\*|/|%|='
+    - name: keyword.operator.relational.scad
+      match: '<|<=|==|!=|>=|>'
+    - name: keyword.operator.logical.scad
+      match: '&&|\|\||!'
+    - name: keyword.operator.conditional.scad
+      match: \?
+
+  literals:
+    patterns:
+    - name: constant.language.boolean.true.scad
+      match: 'true'
+    - name: constant.language.boolean.false.scad
+      match: 'false'
+    - name: string.quoted.double.scad
+      begin: '"'
+      end: '"'
+    - name: constant.numeric.scad
+      match: \b(\d+(\.\d+)?)\b
+    - name: meta.module.scad
+      match: \b(module)\s+([\w\d]*)\s*(\()(.*?)(\))
+      captures:
+        '1': { name: storage.modifier.module.scad }
+        '2': { name: entity.name.function.scad }
+        '3': { name: punctuation.definition.parameters.begin.scad }
+        '4': { name: variable.parameter.module.scad }
+        '5': { name: punctuation.definition.parameters.end.scad }
+    - name: meta.module.children.scad
+      match: \b(children)\s*(\()(.*?)(\))
+      captures:
+        '1': { name: storage.modifier.module.scad }
+        '2': { name: punctuation.definition.parameters.begin.scad }
+        '4': { name: punctuation.definition.parameters.end.scad }
+    - name: meta.function.scad
+      begin: \b(function)\s+([\w\d]*)\s*(\()(.*?)(\))\s*=
+      beginCaptures:
+        '1': { name: storage.modifier.function.scad }
+        '2': { name: entity.name.function.scad }
+        '3': { name: punctuation.definition.parameters.begin.scad }
+        '4': { name: variable.parameter.function.scad }
+        '5': { name: punctuation.definition.parameters.end.scad }
+      patterns:
+      - include: $self
+      - name: meta.body.scad
+      - match: .*?
+      end: ;
+
+  support:
+    patterns:
+    - name: support.function.trigonometric.scad
+      match: \b(cos|sin|tan|acos|asin|atan|atan2)\b
+    - name: support.function.math.scad
+      match: \b(abs|ceil|exp|floor|ln|len|log|lookup|max|min|norm|pow|rands|round|sign|sqrt)\b
+    - name: support.function.transformations.scad
+      match: \b(scale|resize|rotate|translate|mirror|multmatrix|color|minkowski|hull)\b
+    - name: support.function.primitives.scad
+      match: \b(cube|cylindeer|polyhedron|sphere)\b
+    - name: support.function.csg.scad
+      match: \b(union|difference|intersection|render)\b
+    - name: support.function.import.scad
+      match: \b(import)\b
+
+...
