@@ -1,0 +1,9 @@
+<snippet>
+	<content><![CDATA[
+polyhedron(points=${1:[]}, triangles=${2:[]});
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>poly</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.scad</scope>
+</snippet>

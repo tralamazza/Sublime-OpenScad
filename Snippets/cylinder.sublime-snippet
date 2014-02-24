@@ -1,0 +1,9 @@
+<snippet>
+	<content><![CDATA[
+cylinder(h=${1:1}, r=${2:1}, center=${3:false}, \$fn=${4:20});
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>cyl</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.scad</scope>
+</snippet>
