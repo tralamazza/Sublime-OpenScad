@@ -260,6 +260,12 @@
 						</dict>
 					</array>
 				</dict>
+				<dict>
+					<key>match</key>
+					<string>\B\$(fa|fs|fn|t)\b</string>
+					<key>name</key>
+					<string>variable.parameter.special.scad</string>
+				</dict>
 			</array>
 		</dict>
 		<key>support</key>

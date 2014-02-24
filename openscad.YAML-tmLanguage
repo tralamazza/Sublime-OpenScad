@@ -82,6 +82,8 @@ repository:
       - name: meta.body.scad
       - match: .*?
       end: ;
+    - name: variable.parameter.special.scad
+      match: \B\$(fa|fs|fn|t)\b
 
   support:
     patterns:
