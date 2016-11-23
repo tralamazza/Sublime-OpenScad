@@ -1,0 +1,17 @@
+{
+	"shell": true,
+	"cmd": ["openscad ${file}"],
+	"path": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin",
+	"variants":
+  	[
+  		{
+	      	"name": "PNG",
+			"cmd": ["openscad -o 1.png ${file}"],	    },
+	    {
+	      	"name": "DXF",
+			"cmd": ["openscad -o 1.dxf ${file}"],		},
+	    {
+	      	"name": "STL",
+			"cmd": ["openscad -o 1.stl ${file}"],		}
+	]
+}
