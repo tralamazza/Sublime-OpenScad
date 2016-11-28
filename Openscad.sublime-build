@@ -5,13 +5,25 @@
 	"variants":
   	[
   		{
-	      	"name": "PNG",
-			"cmd": ["openscad -o 1.png ${file}"],	    },
+	      	"name": "PNG - linux",
+			"cmd": ["openscad -o ${file/(.+)\\..+/$1/}.png ${file}"],	    },
 	    {
-	      	"name": "DXF",
-			"cmd": ["openscad -o 1.dxf ${file}"],		},
+	      	"name": "DXF - linux",
+			"cmd": ["openscad -o ${file/(.+)\\..+/$1/}.dxf ${file}"],		},
 	    {
-	      	"name": "STL",
-			"cmd": ["openscad -o 1.stl ${file}"],		}
+	      	"name": "STL - linux",
+			"cmd": ["openscad -o ${file/(.+)\\..+/$1/}.stl ${file}"],		},
+  		{
+	      	"name": "PNG - windows",
+  	    	"path": "C:\\Program Files\\OpenSCAD",
+			"cmd": ["openscad.com", "-o", "${file/(.+)\\..+/$1/}.png", "${file}"],	    },
+	    {
+	      	"name": "DXF - windows",
+  	    	"path": "C:\\Program Files\\OpenSCAD",
+			"cmd": ["openscad.com", "-o", "${file/(.+)\\..+/$1/}.dxf", "${file}"],		},
+	    {
+	      	"name": "STL - windows",
+  	    	"path": "C:\\Program Files\\OpenSCAD",
+			"cmd": ["openscad.com", "-o", "${file/(.+)\\..+/$1/}.stl", "${file}"],		}
 	]
 }
