@@ -292,7 +292,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b(cube|cylindeer|polyhedron|sphere)\b</string>
+					<string>\b(cube|cylinder|polyhedron|sphere)\b</string>
 					<key>name</key>
 					<string>support.function.primitives.scad</string>
 				</dict>
