@@ -94,7 +94,7 @@ repository:
     - name: support.function.transformations.scad
       match: \b(scale|resize|rotate|translate|mirror|multmatrix|color|minkowski|hull)\b
     - name: support.function.primitives.scad
-      match: \b(cube|cylindeer|polyhedron|sphere)\b
+      match: \b(cube|cylinder|polyhedron|sphere)\b
     - name: support.function.csg.scad
       match: \b(union|difference|intersection|render)\b
     - name: support.function.import.scad
