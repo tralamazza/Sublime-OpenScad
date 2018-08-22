@@ -56,7 +56,7 @@ repository:
     - name: constant.numeric.scad
       match: \b(\d+(\.\d+)?)\b
     - name: meta.module.scad
-      match: \b(module)\s+([\w\d]*)\s*(\()(.*?)(\))
+      match: \b(module)\s+([\w\d]*)\s*(\()([^\)]*)(\))
       captures:
         '1': { name: storage.modifier.module.scad }
         '2': { name: entity.name.function.scad }
