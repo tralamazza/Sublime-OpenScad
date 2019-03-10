@@ -1,29 +1,66 @@
 {
-	"shell": true,
-	"cmd": ["openscad ${file}"],
-	"path": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin",
-	"variants":
-  	[
-  		{
-	      	"name": "PNG - linux",
-			"cmd": ["openscad -o ${file/(.+)\\..+/$1/}.png ${file}"],	    },
-	    {
-	      	"name": "DXF - linux",
-			"cmd": ["openscad -o ${file/(.+)\\..+/$1/}.dxf ${file}"],		},
-	    {
-	      	"name": "STL - linux",
-			"cmd": ["openscad -o ${file/(.+)\\..+/$1/}.stl ${file}"],		},
-  		{
-	      	"name": "PNG - windows",
-  	    	"path": "C:\\Program Files\\OpenSCAD",
-			"cmd": ["openscad.com", "-o", "${file/(.+)\\..+/$1/}.png", "${file}"],	    },
-	    {
-	      	"name": "DXF - windows",
-  	    	"path": "C:\\Program Files\\OpenSCAD",
-			"cmd": ["openscad.com", "-o", "${file/(.+)\\..+/$1/}.dxf", "${file}"],		},
-	    {
-	      	"name": "STL - windows",
-  	    	"path": "C:\\Program Files\\OpenSCAD",
-			"cmd": ["openscad.com", "-o", "${file/(.+)\\..+/$1/}.stl", "${file}"],		}
-	]
+  "shell": true,
+  "file_patterns": ["*.scad"],
+  "path": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin",
+
+
+  "osx": {
+    "cmd": ["/Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD $file"],
+  },
+  "linux": {
+    "cmd": [ "openscad $file" ],
+  },
+  "windows": {
+    "cmd": ["openscad.com $file"],
+  },
+
+
+  "variants": [
+    {
+      "name": "PNG",
+      "osx": {
+        "cmd": [
+          "/Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD -o ${file/(.+)\\..+/$1/}.png $file"
+        ],
+      },
+      "linux": {
+        "cmd": [
+          "openscad -o ${file/(.+)\\..+/$1/}.png ${file}"
+        ],
+      },
+      "windows": {
+        "cmd": ["openscad.com", "-o", "${file/(.+)\\..+/$1/}.png", "${file}"],
+      }
+    }, {
+      "name": "DXF",
+      "osx": {
+        "cmd": [
+          "/Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD -o ${file/(.+)\\..+/$1/}.dxf $file"
+        ],
+      },
+      "linux": {
+        "cmd": [
+          "openscad -o ${file/(.+)\\..+/$1/}.dxf ${file}"
+        ],
+      },
+      "windows": {
+        "cmd": ["openscad.com", "-o", "${file/(.+)\\..+/$1/}.dxf", "${file}"],
+      }
+    }, {
+      "name": "STL",
+      "osx": {
+        "cmd": [
+          "/Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD -o ${file/(.+)\\..+/$1/}.stl $file"
+        ],
+      },
+      "linux": {
+        "cmd": [
+          "openscad -o ${file/(.+)\\..+/$1/}.stl ${file}"
+        ],
+      },
+      "windows": {
+        "cmd": ["openscad.com", "-o", "${file/(.+)\\..+/$1/}.stl", "${file}"],
+      }
+    }
+  ]
 }
