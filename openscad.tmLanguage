@@ -85,13 +85,13 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b(for)\b</string>
+					<string>\b(for|let|intersection_for)\b</string>
 					<key>name</key>
 					<string>keyword.control.loop.scad</string>
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b(assign)\b</string>
+					<string>\b(assign|assert)\b</string>
 					<key>name</key>
 					<string>keyword.other.scad</string>
 				</dict>
@@ -138,6 +138,18 @@
 					<string>constant.language.boolean.false.scad</string>
 				</dict>
 				<dict>
+					<key>match</key>
+					<string>undef</string>
+					<key>name</key>
+					<string>constant.language.boolean.undef.scad</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>PI</string>
+					<key>name</key>
+					<string>constant.language.boolean.pi.scad</string>
+				</dict>
+				<dict>
 					<key>begin</key>
 					<string>"</string>
 					<key>end</key>
@@ -181,7 +193,7 @@
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>\b(module)\s+([\w\d]*)\s*(\()(.*?)(\))</string>
+					<string>\b(module|function)\s+([\w\d]*)\s*(\()(.*?)(\))</string>
 					<key>name</key>
 					<string>meta.module.scad</string>
 				</dict>
@@ -251,6 +263,10 @@
 							<string>$self</string>
 						</dict>
 						<dict>
+							<key>use</key>
+							<string>$self</string>
+						</dict>
+						<dict>
 							<key>name</key>
 							<string>meta.body.scad</string>
 						</dict>
@@ -262,7 +278,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\B\$(fa|fs|fn|t)\b</string>
+					<string>\B\$(fa|fs|fn|t|vpr|vpt|vpd|children|preview)\b</string>
 					<key>name</key>
 					<string>variable.parameter.special.scad</string>
 				</dict>
@@ -280,19 +296,19 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b(abs|ceil|exp|floor|ln|len|log|lookup|max|min|norm|pow|rands|round|sign|sqrt)\b</string>
+					<string>\b(abs|ceil|chr|cross|concat|exp|floor|ln|len|log|lookup|max|min|norm|ord|parent_module|pow|rands|round|search|sign|sqrt|str|version|version_num)\b</string>
 					<key>name</key>
 					<string>support.function.math.scad</string>
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b(scale|resize|rotate|translate|mirror|multmatrix|color|minkowski|hull)\b</string>
+					<string>\b(scale|resize|rotate|translate|mirror|multmatrix|color|minkowski|hull|offset|linear_extrude|rotate_extrude)\b</string>
 					<key>name</key>
 					<string>support.function.transformations.scad</string>
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b(cube|cylinder|polyhedron|sphere)\b</string>
+					<string>\b(cube|cylinder|polyhedron|sphere|circle|square|polygon|text|projection)\b</string>
 					<key>name</key>
 					<string>support.function.primitives.scad</string>
 				</dict>
@@ -304,7 +320,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b(import)\b</string>
+					<string>\b(import|surface)\b</string>
 					<key>name</key>
 					<string>support.function.import.scad</string>
 				</dict>
