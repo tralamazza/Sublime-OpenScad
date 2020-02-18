@@ -32,9 +32,9 @@ repository:
     - name: keyword.control.flow.scad
       match: \b(return)\b
     - name: keyword.control.loop.scad
-      match: \b(for)\b
+      match: \b(for|let|intersection_for)\b
     - name: keyword.other.scad
-      match: \b(assign)\b
+      match: \b(assign|assert)\b
     - name: keyword.operator.arithmetical.scad
       match: '\+|-|\*|/|%|='
     - name: keyword.operator.relational.scad
@@ -50,13 +50,17 @@ repository:
       match: 'true'
     - name: constant.language.boolean.false.scad
       match: 'false'
+    - name: constant.language.boolean.undef.scad
+      match: 'undef'
+    - name: constant.language.boolean.PI.scad
+      match: 'PI'
     - name: string.quoted.double.scad
       begin: '"'
       end: '"'
     - name: constant.numeric.scad
       match: \b(\d+(\.\d+)?)\b
     - name: meta.module.scad
-      match: \b(module)\s+([\w\d]*)\s*(\()([^\)]*)(\))
+      match: \b(module|function)\s+([\w\d]*)\s*(\()([^\)]*)(\))
       captures:
         '1': { name: storage.modifier.module.scad }
         '2': { name: entity.name.function.scad }
@@ -79,25 +83,26 @@ repository:
         '5': { name: punctuation.definition.parameters.end.scad }
       patterns:
       - include: $self
+      - use: $self
       - name: meta.body.scad
       - match: .*?
       end: ;
     - name: variable.parameter.special.scad
-      match: \B\$(fa|fs|fn|t)\b
+      match: \B\$(fa|fs|fn|t|vpr|vpt|vpd|children|preview)\b
 
   support:
     patterns:
     - name: support.function.trigonometric.scad
       match: \b(cos|sin|tan|acos|asin|atan|atan2)\b
     - name: support.function.math.scad
-      match: \b(abs|ceil|exp|floor|ln|len|log|lookup|max|min|norm|pow|rands|round|sign|sqrt)\b
+      match: \b(abs|ceil|chr|cross|concat|exp|floor|ln|len|log|lookup|max|min|norm|ord|parent_module|pow|rands|round|search|sign|sqrt|str|version|version_num)\b
     - name: support.function.transformations.scad
-      match: \b(scale|resize|rotate|translate|mirror|multmatrix|color|minkowski|hull)\b
+      match: \b(scale|resize|rotate|translate|mirror|multmatrix|color|minkowski|hull|offset|linear_extrude|rotate_extrude)\b
     - name: support.function.primitives.scad
-      match: \b(cube|cylinder|polyhedron|sphere)\b
+      match: \b(cube|cylinder|polyhedron|sphere|circle|square|polygon|text|projection)\b
     - name: support.function.csg.scad
       match: \b(union|difference|intersection|render)\b
     - name: support.function.import.scad
-      match: \b(import)\b
+      match: \b(import|surface)\b
 
 ...
