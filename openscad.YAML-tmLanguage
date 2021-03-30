@@ -57,6 +57,9 @@ repository:
     - name: string.quoted.double.scad
       begin: '"'
       end: '"'
+      patterns:
+      - name: constant.character.escape.untitled
+      - match: \\.
     - name: constant.numeric.scad
       match: \b(\d+(\.\d+)?)\b
     - name: meta.module.scad
