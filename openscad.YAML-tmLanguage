@@ -47,13 +47,13 @@ repository:
   literals:
     patterns:
     - name: constant.language.boolean.true.scad
-      match: 'true'
+      match: '\btrue\b'
     - name: constant.language.boolean.false.scad
-      match: 'false'
+      match: '\bfalse\b'
     - name: constant.language.boolean.undef.scad
-      match: 'undef'
+      match: '\bundef\b'
     - name: constant.language.boolean.PI.scad
-      match: 'PI'
+      match: '\bPI\b'
     - name: string.quoted.double.scad
       begin: '"'
       end: '"'
