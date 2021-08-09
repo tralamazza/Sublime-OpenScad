@@ -127,25 +127,25 @@
 			<array>
 				<dict>
 					<key>match</key>
-					<string>true</string>
+					<string>\btrue\b</string>
 					<key>name</key>
 					<string>constant.language.boolean.true.scad</string>
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>false</string>
+					<string>\bfalse\b</string>
 					<key>name</key>
 					<string>constant.language.boolean.false.scad</string>
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>undef</string>
+					<string>\bundef\b</string>
 					<key>name</key>
 					<string>constant.language.boolean.undef.scad</string>
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>PI</string>
+					<string>\bPI\b</string>
 					<key>name</key>
 					<string>constant.language.boolean.pi.scad</string>
 				</dict>
