@@ -26,6 +26,18 @@
 			<key>include</key>
 			<string>#support</string>
 		</dict>
+		<dict>
+			<key>include</key>
+			<string>#modules</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#functions</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#function-call</string>
+		</dict>
 	</array>
 	<key>repository</key>
 	<dict>
@@ -64,6 +76,127 @@
 					<string>\*/</string>
 					<key>name</key>
 					<string>comment.block.scad</string>
+				</dict>
+			</array>
+		</dict>
+		<key>function-call</key>
+		<dict>
+			<key>begin</key>
+			<string>(\()</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.arguments.begin.scad</string>
+				</dict>
+			</dict>
+			<key>contentName</key>
+			<string>meta.function-call.arguments.scad</string>
+			<key>end</key>
+			<string>(\))</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.arguments.end.scad</string>
+				</dict>
+			</dict>
+			<key>name</key>
+			<string>meta.function-call.scad</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#keyword_arguments</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>$self</string>
+				</dict>
+			</array>
+		</dict>
+		<key>functions</key>
+		<dict>
+			<key>begin</key>
+			<string>\b(function)\s+([[:alpha:]_][[:alnum:]_]*)\s*(\()</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>storage.modifier.function.scad</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.function.scad</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.parameters.begin.scad</string>
+				</dict>
+			</dict>
+			<key>contentName</key>
+			<string>meta.function.parameters.scad</string>
+			<key>end</key>
+			<string>(\))</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.parameters.end.scad</string>
+				</dict>
+			</dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#keyword_arguments</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>([[:alpha:]_][[:alnum:]_]*)</string>
+					<key>name</key>
+					<string>variable.parameter.scad</string>
+				</dict>
+			</array>
+		</dict>
+		<key>keyword_arguments</key>
+		<dict>
+			<key>begin</key>
+			<string>\b([[:alpha:]_][[:alnum:]_]*)\s*(=)(?!=)</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>variable.parameter.function.keyword.scad</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.operator.assignment.scad</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>\s*(?:(,)|(?=[\)\:]))</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.separator.parameters.scad</string>
+				</dict>
+			</dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>$self</string>
 				</dict>
 			</array>
 		</dict>
@@ -147,7 +280,7 @@
 					<key>match</key>
 					<string>\bPI\b</string>
 					<key>name</key>
-					<string>constant.language.boolean.pi.scad</string>
+					<string>constant.language.boolean.PI.scad</string>
 				</dict>
 				<dict>
 					<key>begin</key>
@@ -185,40 +318,6 @@
 						<key>2</key>
 						<dict>
 							<key>name</key>
-							<string>entity.name.function.scad</string>
-						</dict>
-						<key>3</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.parameters.begin.scad</string>
-						</dict>
-						<key>4</key>
-						<dict>
-							<key>name</key>
-							<string>variable.parameter.module.scad</string>
-						</dict>
-						<key>5</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.parameters.end.scad</string>
-						</dict>
-					</dict>
-					<key>match</key>
-					<string>\b(module|function)\s+([\w\d]*)\s*(\()(.*?)(\))</string>
-					<key>name</key>
-					<string>meta.module.scad</string>
-				</dict>
-				<dict>
-					<key>captures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>storage.modifier.module.scad</string>
-						</dict>
-						<key>2</key>
-						<dict>
-							<key>name</key>
 							<string>punctuation.definition.parameters.begin.scad</string>
 						</dict>
 						<key>4</key>
@@ -233,65 +332,58 @@
 					<string>meta.module.children.scad</string>
 				</dict>
 				<dict>
-					<key>begin</key>
-					<string>\b(function)\s+([\w\d]*)\s*(\()(.*?)(\))\s*=</string>
-					<key>beginCaptures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>storage.modifier.function.scad</string>
-						</dict>
-						<key>2</key>
-						<dict>
-							<key>name</key>
-							<string>entity.name.function.scad</string>
-						</dict>
-						<key>3</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.parameters.begin.scad</string>
-						</dict>
-						<key>4</key>
-						<dict>
-							<key>name</key>
-							<string>variable.parameter.function.scad</string>
-						</dict>
-						<key>5</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.parameters.end.scad</string>
-						</dict>
-					</dict>
-					<key>end</key>
-					<string>;</string>
-					<key>name</key>
-					<string>meta.function.scad</string>
-					<key>patterns</key>
-					<array>
-						<dict>
-							<key>include</key>
-							<string>$self</string>
-						</dict>
-						<dict>
-							<key>use</key>
-							<string>$self</string>
-						</dict>
-						<dict>
-							<key>name</key>
-							<string>meta.body.scad</string>
-						</dict>
-						<dict>
-							<key>match</key>
-							<string>.*?</string>
-						</dict>
-					</array>
-				</dict>
-				<dict>
 					<key>match</key>
 					<string>\B\$(fa|fs|fn|t|vpr|vpt|vpd|children|preview)\b</string>
 					<key>name</key>
 					<string>variable.parameter.special.scad</string>
+				</dict>
+			</array>
+		</dict>
+		<key>modules</key>
+		<dict>
+			<key>begin</key>
+			<string>\b(module)\s+([[:alpha:]_][[:alnum:]_]*)\s*(\()</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>storage.modifier.module.scad</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.function.scad</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.parameters.begin.scad</string>
+				</dict>
+			</dict>
+			<key>contentName</key>
+			<string>meta.module.parameters.scad</string>
+			<key>end</key>
+			<string>(\))</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.parameters.end.scad</string>
+				</dict>
+			</dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#keyword_arguments</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>([[:alpha:]_][[:alnum:]_]*)</string>
+					<key>name</key>
+					<string>variable.parameter.scad</string>
 				</dict>
 			</array>
 		</dict>
