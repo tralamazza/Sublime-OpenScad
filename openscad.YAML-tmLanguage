@@ -10,6 +10,9 @@ patterns:
 - include: '#keywords'
 - include: '#literals'
 - include: '#support'
+- include: '#modules'
+- include: '#functions'
+- include: '#function-call'
 
 repository:
   comments:
@@ -44,6 +47,60 @@ repository:
     - name: keyword.operator.conditional.scad
       match: \?
 
+  keyword_arguments:
+    begin: \b([[:alpha:]_][[:alnum:]_]*)\s*(=)(?!=)
+    beginCaptures:
+      '1': {name: variable.parameter.function.keyword.scad}
+      '2': {name: keyword.operator.assignment.scad}
+    end: \s*(?:(,)|(?=[\)\:]))
+    endCaptures:
+      '1': {name: punctuation.separator.parameters.scad}
+    patterns:
+    - include: $self
+
+  modules:
+    contentName: meta.module.parameters.scad
+    begin: \b(module)\s+([[:alpha:]_][[:alnum:]_]*)\s*(\()
+    beginCaptures:
+      '1': { name: storage.modifier.module.scad }
+      '2': { name: entity.name.function.scad }
+      '3': { name: punctuation.definition.parameters.begin.scad }
+    end: (\))
+    endCaptures:
+      '1': { name: punctuation.definition.parameters.end.scad }
+    patterns:
+      - include: '#keyword_arguments'
+      - name: variable.parameter.scad
+        match: ([[:alpha:]_][[:alnum:]_]*)
+
+  functions:
+    contentName: meta.function.parameters.scad
+    begin: \b(function)\s+([[:alpha:]_][[:alnum:]_]*)\s*(\()
+    beginCaptures:
+      '1': { name: storage.modifier.function.scad }
+      '2': { name: entity.name.function.scad }
+      '3': { name: punctuation.definition.parameters.begin.scad }
+    end: (\))
+    endCaptures:
+      '1': { name: punctuation.definition.parameters.end.scad }
+    patterns:
+      - include: '#keyword_arguments'
+      - name: variable.parameter.scad
+        match: ([[:alpha:]_][[:alnum:]_]*)
+
+  function-call:
+    name: meta.function-call.scad
+    contentName: meta.function-call.arguments.scad
+    begin: (\()
+    beginCaptures:
+      '1': {name: punctuation.definition.arguments.begin.scad}
+    end: (\))
+    endCaptures:
+      '1': {name: punctuation.definition.arguments.end.scad}
+    patterns:
+    - include: '#keyword_arguments'
+    - include: $self
+
   literals:
     patterns:
     - name: constant.language.boolean.true.scad
@@ -62,34 +119,12 @@ repository:
       - match: \\.
     - name: constant.numeric.scad
       match: \b(\d+(\.\d+)?)\b
-    - name: meta.module.scad
-      match: \b(module|function)\s+([\w\d]*)\s*(\()([^\)]*)(\))
-      captures:
-        '1': { name: storage.modifier.module.scad }
-        '2': { name: entity.name.function.scad }
-        '3': { name: punctuation.definition.parameters.begin.scad }
-        '4': { name: variable.parameter.module.scad }
-        '5': { name: punctuation.definition.parameters.end.scad }
     - name: meta.module.children.scad
       match: \b(children)\s*(\()(.*?)(\))
       captures:
         '1': { name: storage.modifier.module.scad }
         '2': { name: punctuation.definition.parameters.begin.scad }
         '4': { name: punctuation.definition.parameters.end.scad }
-    - name: meta.function.scad
-      begin: \b(function)\s+([\w\d]*)\s*(\()(.*?)(\))\s*=
-      beginCaptures:
-        '1': { name: storage.modifier.function.scad }
-        '2': { name: entity.name.function.scad }
-        '3': { name: punctuation.definition.parameters.begin.scad }
-        '4': { name: variable.parameter.function.scad }
-        '5': { name: punctuation.definition.parameters.end.scad }
-      patterns:
-      - include: $self
-      - use: $self
-      - name: meta.body.scad
-      - match: .*?
-      end: ;
     - name: variable.parameter.special.scad
       match: \B\$(fa|fs|fn|t|vpr|vpt|vpd|children|preview)\b
 
